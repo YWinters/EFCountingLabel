@@ -189,7 +189,11 @@ open class EFCountingLabel: UILabel, EFCountAdapter {
     func customInit() {
         setUpdateBlock { [weak self] (value, _) in
             guard let self = self else { return }
-            self.text = "\(Int(value))"
+            if self.text !=  "\(Int(value))" {
+                UIView.transition(with: self, duration: 0.3, options: .transitionFlipFromTop) {
+                    self.text = "\(Int(value))"
+                }
+            }
         }
     }
     
